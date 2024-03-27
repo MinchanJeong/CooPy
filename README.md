@@ -14,3 +14,4 @@ While Apache Airflow is an option, our direct queue management for each node off
 - **Simplicity and Intuitiveness**: I think it is designed to be straightforward and user-friendly.
 
 ## To Start
+Please try to run `python task_demo.py` (working on features).
