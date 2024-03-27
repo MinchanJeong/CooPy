@@ -13,17 +13,13 @@ class ExecutionManager:
         """Initialize the ExecutionManager with info, a scripter instance, and a queue manager."""
         self.operation_list = info.operation_list
         self.update_frequency = info.update_frequency
-        self.op_max_parallel = info.op_max_parallel
         self.cfg_sort_func = info.cfg_sort_func
         self.scripter = scripter
         self.queue_manager = QueueManager(info, detector)
-
-        # Initialize multiprocessing manager and shared signal dictionary
-        self.mp_manager = Manager()
-        self.signal_dict = self.mp_manager.dict()
-
-        self.processes = {}
         self.total_jobs = len(self.queue_manager.config_list)
+
+        # Initialize shared signal dictionary
+        self.signal_dict = Manager().dict()
 
     def execution_frame(self, op, cfg, slot):
         """Runs a single operation for a given configuration."""
@@ -59,9 +55,8 @@ class ExecutionManager:
                         cfg = tmp_queue.pop(0)
                         p = Process(target=self.execution_frame, args=(op, cfg, slot))
                         p.start()
-                        self.processes[(op,slot)] = (p, cfg)
                         self.queue_manager.update_execution(op, cfg, slot)
-                        time.sleep(0.1)
+                        time.sleep(0.05)
                     else:
                         continue
             

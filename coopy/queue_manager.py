@@ -16,7 +16,6 @@ class QueueManager:
         self.operation_list: List[str] = info.operation_list
         self.N_ops = len(self.operation_list)  # Total number of operations
         self.config_list: List[str] = copy(info.config_list)
-        self.N_cfg = len(self.config_list)  # Total number of configurations
         
         # Initialize operational parameters from the Info instance.
         self.error_tolerance: int = info.error_tolerance
