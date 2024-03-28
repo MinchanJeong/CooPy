@@ -1,4 +1,4 @@
-# Managing Chain of Operations with Python
+# CooPy: Managing Chain of Operations with Python
 
 ## Repository Purpose
 This repository enhances task management in Python by facilitating the execution of interconnected operations across various configurations.
